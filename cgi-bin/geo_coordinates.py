@@ -25,3 +25,5 @@ def get_coordinates(location_name):
 
 # Get coordinates for the provided location
 coordinates = get_coordinates(location_name)
+# Output the result as JSON
+print(json.dumps(coordinates))
