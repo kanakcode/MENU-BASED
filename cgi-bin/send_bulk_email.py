@@ -43,8 +43,8 @@ subject = form.getvalue("subject")
 body = form.getvalue("body")
 smtp_server = "smtp.gmail.com"
 smtp_port = 587
-login = "aakarpawar7489@gmail.com"
-password = "yhbc jymk iosz spjk"  # Be cautious with hardcoding passwords
+login = "put your email ID"
+password = "put app password"  # Be cautious with hardcoding passwords
 
 # Retrieve and process the recipients
 recipient_field = form.getvalue("recipients")
