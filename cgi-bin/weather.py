@@ -16,7 +16,7 @@ form = cgi.FieldStorage()
 city_name = form.getvalue("city")
 
 # OpenWeatherMap API details
-API_KEY = '2a70ded4047c8ebd6e570cbcf89a7c0e'
+API_KEY = 'ENTER YOUR API KEY'
 BASE_URL = 'http://api.openweathermap.org/data/2.5/weather'
 
 # Function to get weather data
