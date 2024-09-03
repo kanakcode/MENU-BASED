@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Drag and Drop Sticky Notes</title>
+    <style>
+        .sticky {
+            width: 200px;
+            height: 200px;
+            background-color: #ffeb3b;
+            color: #000;
+            padding: 10px;
+            box-shadow: 0 0 5px rgba(0, 0, 0, 0.3);
+            position: absolute;
+            cursor: move;
+            overflow: auto;
+            border-radius: 10px;
+        }
+        .sticky[contenteditable="true"] {
+            outline: none;
+        }
+    </style>
+</head>
+<body>
+
+<div class="sticky" draggable="true" contenteditable="true" style="left: 50px; top: 50px;">Drag me!</div>
+<div class="sticky" draggable="true" contenteditable="true" style="left: 300px; top: 50px;">Edit me!</div>
+<div class="sticky" draggable="true" contenteditable="true" style="left: 550px; top: 50px;">Move me!</div>
+
+<script>
+    let dragElement = null;
+    let offsetX, offsetY;
+
+    document.addEventListener('dragstart', function(event) {
+        if (event.target.classList.contains('sticky')) {
+            dragElement = event.target;
+            offsetX = event.offsetX;
+            offsetY = event.offsetY;
+        }
+    });
+
+    document.addEventListener('dragover', function(event) {
+        event.preventDefault();
+    });
+
+    document.addEventListener('drag', function(event) {
+        if (dragElement) {
+            const x = event.clientX - offsetX;
+            const y = event.clientY - offsetY;
+            dragElement.style.left = `${x}px`;
+            dragElement.style.top = `${y}px`;
+        }
+    });
+
+    document.addEventListener('dragend', function() {
+        dragElement = null;
+    });
+</script>
+
+</body>
+</html>
