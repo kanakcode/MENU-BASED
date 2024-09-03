@@ -5,18 +5,19 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Main Page</title>
     <style>
+        @import url('https://fonts.googleapis.com/css2?family=Anton&display=swap');
+
         body {
-            font-family: 'Arial', sans-serif;
+            font-family: 'Anton', sans-serif;
             margin: 0;
             padding: 0;
-            background-color: #f4f4f4;
-            color: #333;
-            overflow: hidden; /* Prevents scrolling */
+            background-color: #737373;
+            color: black;
         }
 
         /* Header styles */
         .header {
-            background-color: #4682B4;
+            background-color: black;
             color: #fff;
             padding: 20px 0;
             text-align: center;
@@ -26,6 +27,14 @@
             width: 100%;
             z-index: 1000;
             box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.1);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .header .nav-left {
+            display: flex;
+            align-items: center;
         }
 
         .header a {
@@ -44,31 +53,42 @@
         .content {
             padding: 100px 20px 20px 20px; /* Adjust for the fixed header */
             text-align: center;
-            position: relative; /* Needed for z-index to work */
-            z-index: 1; /* Ensures content is above the triangles */
         }
 
         h1 {
-            color: #333;
+            color: black;
             margin-bottom: 30px;
         }
 
-        /* Button styles */
-        .btn {
+        /* Button and image container styles */
+        .btn-container {
+            display: inline-block;
             margin: 10px;
-            padding: 15px 30px;
-            font-size: 16px;
+        }
+
+        .btn-container img {
+            width: 120px; /* Increased size for the images */
+            height: 120px; /* Increased size for the images */
+            display: block;
+            margin: 0 auto 10px auto;
+            border-radius: 15px; /* Add this line to smooth the corners */
+        }
+
+        .btn {
+            padding: 20px 40px; /* Smaller padding for buttons */
+            font-size: 20px; /* Reduced font size for buttons */
             cursor: pointer;
-            background-color: #007bff;
+            background-color: black;
             color: #fff;
             border: none;
             border-radius: 5px;
             transition: background-color 0.3s ease, box-shadow 0.3s ease;
-            display: inline-block;
+            display: block;
+            width: 100%;
         }
 
         .btn:hover {
-            background-color: #0056b3;
+            background-color: #333;
             box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
         }
 
@@ -85,14 +105,14 @@
         /* Triangle for the left half of the page */
         .triangle-left {
             border-top: 100vh solid transparent; /* Full height of the viewport */
-            border-right: 100vw solid LightGray; /* Half of the viewport width */
+            border-right: 100vw solid #b5b5b5; /* Half of the viewport width */
             animation: slideOutLeft 3s forwards; /* Animation to slide out */
         }
 
         /* Triangle for the right half of the page */
         .triangle-right {
             border-top: 100vh solid transparent; /* Full height of the viewport */
-            border-left: 100vw solid LightGray; /* Half of the viewport width */
+            border-left: 100vw solid #b5b5b5; /* Half of the viewport width */
             animation: slideOutRight 3s forwards; /* Animation to slide out */
         }
 
@@ -120,8 +140,11 @@
 <body>
     <!-- Header -->
     <div class="header">
-        <a href="#">Home</a>
-        <a href="#">Source Code</a>
+        <div class="nav-right">
+            <a href="#" onclick="goToProfile()">Profile</a>
+            <a href="#" onclick="goToContact()">Contact</a>
+        </div>
+    
     </div>
 
     <!-- Diagonal Animation -->
@@ -130,48 +153,171 @@
 
     <!-- Main content -->
     <div class="content">
-        <h1>Welcome to Menu Page</h1>
+        <h1>Integrate 360</h1>
 
-        <button class="btn" onclick="goToGoogleSearch()">Go to Google Search</button>
-        <button class="btn" onclick="sendBulkEmail()">Send Bulk Email</button>
-        <button class="btn" onclick="geoCoordinates()">Geo Coordinates</button>
-        <button class="btn" onclick="linuxWebUI()">Linux Terminal</button>
-        <button class="btn" onclick="dockerAutomation()">Docker Automation</button>
-        <button class="btn" onclick="htmlInterpreter()">Live HTML Interpreter</button>
-        <button class="btn" onclick="SMS()">SMS</button>
-        <button class="btn" onclick="whatsapp()">whatsapp</button>
-        <button class="btn" onclick="weather()">weather</button>
-    </div>
+        <!-- Button with images -->
+        <div class="btn-container">
+            <img src="https://miro.medium.com/v2/resize:fit:1400/1*cG6U1qstYDijh9bPL42e-Q.jpeg" alt="MLmodel">
+            <button class="btn" onclick="MLmodel()">MachineLearning</button>
+        </div>
+        <div class="btn-container">
+            <img src="https://t4.ftcdn.net/jpg/03/86/85/77/360_F_386857735_iEZ5y3LVde9nwDkBb3wnt5PuEE1ylWRJ.jpg" alt="Google Search">
+            <button class="btn" onclick="goToGoogleSearch()">Go to Google Search</button>
+        </div>
+        <div class="btn-container">
+            <img src="https://www.telegraph.co.uk/content/dam/technology/2015/12/11/gmail-envelope_trans_NvBQzQNjv4BqqVzuuqpFlyLIwiB6NTmJwfSVWeZ_vEN7c6bHu2jJnT8.jpg?imwidth=680" alt="Send Bulk Email">
+            <button class="btn" onclick="sendBulkEmail()">Send Bulk Email</button>
+        </div>
+        <div class="btn-container">
+            <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS5Sp4MTeqBH-VzDoexgTDFLMrtajW4fSoeDQ&s" alt="Geo Coordinates">
+            <button class="btn" onclick="geoCoordinates()">Geo Coordinates</button>
+        </div>
+        <div class="btn-container">
+            <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR8963KbfiwFLTvcXlIVYUfxyUFWu212oiCoA&s" alt="Linux Terminal">
+            <button class="btn" onclick="linuxWebUI()">Linux Terminal</button>
+        </div>
+        <div class="btn-container">
+            <img src="https://www.docker.com/wp-content/uploads/2023/05/symbol_blue-docker-logo.png" alt="Docker Automation">
+            <button class="btn" onclick="dockerAutomation()">Docker Automation</button>
+        </div>
+        <div class="btn-container">
+            <img src="https://www.hostinger.com/tutorials/wp-content/uploads/sites/2/2018/11/what-is-html-3.jpg" alt="Live HTML Interpreter">
+            <button class="btn" onclick="htmlInterpreter()">Live HTML Interpreter</button>
+        </div>
+        <div class="btn-container">
+            <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTc4sj8S144yhF4X39Be_d74Mtln_Yli7_IGg&s" alt="SMS">
+            <button class="btn" onclick="SMS()">SMS</button>
+        </div>
+        <div class="btn-container">
+            <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT5QYZLW9BEGwkTeOHH07xj5BWOUXcYdavWRw&s" alt="WhatsApp">
+            <button class="btn" onclick="whatsapp()">WhatsApp</button>
+        </div>
+        <div class="btn-container">
+            <img src="https://play-lh.googleusercontent.com/ZigILe-FBoD6qz68u3EeYxT5zAgGFzWQqoFOXgQZ5MCWbdXBPTMGXxOiqtF2E7auBw=w240-h480-rw" alt="Weather">
+            <button class="btn" onclick="weather()">Weather</button>
+        </div>
+        <div class="btn-container">
+            <img src="https://fujifilm-x.b-cdn.net/wp-content/uploads/2021/01/gfx100s_thum_egsv.jpg?width=480&height=480" alt="Camera">
+            <button class="btn" onclick="camera()">Camera</button>
+        </div>
+        <div class="btn-container">
+            <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR2xQcwKitRgXfqdi34DYlocPSEXD2G2zZipg&s" alt="AWS Services">
+            <button class="btn" onclick="goToAWS()">AWS Services</button>
+        </div>
+        <div class="btn-container">
+            <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTiNzCRuFXFJbSSikA5S0Lk0f6_zE-mErWXSg&s" alt="Speak">
+            <button class="btn" onclick="speak()">Speak</button>
+        </div>
+        <div class="btn-container">
+            <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSylpcWqlhyflFxHD2hzeoQK3w6VRiMP7TaBg&s" alt="Memory">
+            <button class="btn" onclick="memory()">Memory</button>
+        </div>
+        <div class="btn-container">
+            <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS8lwu6nXTBmOj0aKnM4zRIW-YrMJV1ve0sOA&s" alt="Face Detection">
+            <button class="btn" onclick="faceDetection()">Face Detection</button>
+        </div>
+        <div class="btn-container">
+            <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTCCZX7OoU7Zzj3-z-ULbQ54CcJ8FaPl01Ncw&s" alt="Drag and Drop">
+            <button class="btn" onclick="dragAnddrop()">Sticky Notes</button>
+        </div>
+        <div class="btn-container">
+            <img src="https://cdn.mos.cms.futurecdn.net/VMMRBZKZLVGdLpQz9YvkH8-1200-80.jpg" alt="Gemini">
+            <button class="btn" onclick="gemini()">Gemini</button>
+        </div>
+        <div class="btn-container">
+            <img src="https://i0.wp.com/softwareengineeringdaily.com/wp-content/uploads/2019/01/Kubernetes_New.png?resize=730%2C389&ssl=1">
+            <button class="btn" onclick="kubernetes()">Kubernetes</button>
+        </div>
+        <div class="btn-container">
+            <img src="https://i0.wp.com/softwareengineeringdaily.com/wp-content/uploads/2019/01/Kubernetes_New.png?resize=730%2C389&ssl=1">
+            <button class="btn" onclick="movie_recommendation()">movie recommendation</button>
+        </div>
 
     <!-- JavaScript to handle button clicks -->
     <script>
+        function goToProfile() {
+            window.location.href = "Profile.html";
+        }
+
+        function goToContact() {
+            window.location.href = "contact.html";
+        }
+
         // Functions to handle button clicks
         function goToGoogleSearch() {
             window.location.href = "google_search.html";
         }
+
         function sendBulkEmail() {
             window.location.href = "send_bulk_email.html";
         }
+
         function geoCoordinates() {
             window.location.href = "geo_coordinates.html";
         }
+
         function linuxWebUI() {
-            window.location.href = "linux.html";
+            window.location.href = "linux_services.html";
         }
+
         function dockerAutomation() {
-            window.location.href = "docker.html";
+            window.location.href = "docker.html ";
         }
+
         function htmlInterpreter() {
             window.location.href = "html_live_interpreter.html";
         }
+
         function SMS() {
             window.location.href = "sms.html";
         }
+
         function whatsapp() {
-                window.location.href = "whatsapp.html";
-        }function weather(){
-                window.location.href = "weather.html";
+            window.location.href = "whatsapp.html";
+        }
+
+        function weather() {
+            window.location.href = "weather.html";
+        }
+
+        function camera() {
+            window.location.href = "camera.html";
+        }
+
+        function goToAWS() {
+            window.location.href = "aws_services.html";
+        }
+
+        function speak() {
+            window.location.href = " tts.html";
+        }
+
+        function memory() {
+            window.location.href = "memory_profile.html";
+        }
+
+        function faceDetection() {
+            window.location.href = "face_detection.html";
+        }
+
+        function dragAnddrop() {
+            window.location.href = "drag_and_drop.html";
+        }
+
+        function gemini() {
+            window.location.href = "gemini_chat.html";
+        }
+
+        function kubernetes() {
+            window.location.href = "kubernetes.html";
+        }
+        function MLmodel(){
+                window.location.href = "ml_model.html";
+        }
+        function movie_recommendation(){
+                window.location.href = "movie_recommendation.html";
         }
     </script>
 </body>
 </html>
+
