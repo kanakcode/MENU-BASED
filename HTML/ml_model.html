@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Machine Learning Model Selection</title>
+    <style>
+        body {
+            font-family: 'Anton', sans-serif;
+            background-color: #737373;
+            color: black;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+        }
+    </style>
+</head>
+<body>
+    <h1>Select a Machine Learning Model</h1>
+    <form id="mlForm" enctype="multipart/form-data">
+        <label for="datafile">Upload Dataset (CSV):</label>
+        <input type="file" name="datafile" id="datafile" required><br><br>
+        <label for="model">Choose Model:</label>
+        <select name="model" id="model">
+            <option value="linear_regression">Linear Regression</option>
+            <option value="knn">K-Nearest Neighbors</option>
+        </select><br><br>
+        <input type="submit" value="Submit">
+    </form>
+    <div id="results"></div>
+
+    <script>
+        document.getElementById('mlForm').onsubmit = async function(event) {
+            event.preventDefault();
+            
+            const form = event.target;
+            const formData = new FormData(form);
+            
+            const response = await fetch(form.action, {
+                method: form.method,
+                body: formData
+            });
+            
+            const result = await response.json();
+            
+            const resultsDiv = document.getElementById('results');
+            if (result.error) {
+                resultsDiv.innerHTML = `<h2>Error: ${result.error}</h2>`;
+            } else {
+                const predictions = result.predictions;
+                let output = '<h2>Predictions</h2><table border="1"><tr><th>Index</th><th>Prediction</th></tr>';
+                predictions.forEach((prediction, index) => {
+                    output += `<tr><td>${index}</td><td>${prediction}</td></tr>`;
+                });
+                output += '</table>';
+                resultsDiv.innerHTML = output;
+            }
+        }
+    </script>
+</body>
+</html>
