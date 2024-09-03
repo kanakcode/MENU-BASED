@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Kubernetes Web-console</title>
+  <link href="https://fonts.googleapis.com/css2?family=Anton&display=swap" rel="stylesheet">
+  <style>
+    body { 
+      margin: 0; 
+      padding: 0; 
+      font-family: 'Anton', sans-serif; 
+      background-color: #737373;
+      background-image: url('https://c4.wallpaperflare.com/wallpaper/500/442/354/outrun-vaporwave-hd-wallpaper-preview.jpg');
+      background-size: cover;
+    }
+    h1 { 
+      color: #fff; 
+      margin-bottom: 40px; 
+      font-size: 45px;  
+      letter-spacing: 2px;
+    }
+    div#cmdbox { 
+      width: 710px; 
+      height: 70px; 
+      background-color: #82CAFA; 
+      padding: 20px;
+    }
+    input#ds { 
+      width: 450px; 
+      height: 30px; 
+      padding: 10px; 
+      border: none; 
+      border-radius: 25px; 
+      outline: none;
+    }
+    button { 
+      height: 40px; 
+      width: 100px; 
+      background: #ffeb3b; 
+      border: none; 
+      color: #000; 
+      border-radius: 25px; 
+      cursor: pointer;
+    }
+    button:hover { 
+      background: #ffc107; 
+    }
+    pre { 
+      width: 1400px; 
+      height: 400px; 
+      background: rgba(0,0,0,0.5); 
+      padding: 20px; 
+      font-size: 15px; 
+      color: #fff;
+    }
+    img { 
+      margin-right: 30px; 
+      width: 200px; 
+      height: 186px;
+    }
+  </style>
+</head>
+<body>
+  <div id="hd">
+    <form>
+      <div id="box">
+        <h1 style="background-color: black;">KUBERNETES WEB-CONSOLE</h1>
+        <div id="cmdbox">
+          Pass Your Requirement Here:  
+          <input type="text" id="ds" placeholder="Type here..">
+          <button onclick="run()" id="run-cmd" type="button">Execute</button>
+        </div>
+        <pre>
+          <div id="d1">Output...</div>
+        </pre>
+      </div>
+    </form>
+  </div>
+
+  <script>
+    function run() {
+      var i = document.getElementById("ds").value;
+      var cmd_no = "0";
+      var command = "";
+      
+      if (((i.includes("create")) || (i.includes("build")) || (i.includes("launch"))) && ((i.includes("deployments")) || (i.includes("deployment")))) {
+        var img_name = prompt("Enter Image name: ");
+        var deployment_name = prompt("Enter Deployment name: ");
+        cmd_no = "1";
+        command = cmd_no + " " + img_name + " " + deployment_name;
+      }
+      else if (((i.includes("create")) || (i.includes("build")) || (i.includes("launch"))) && ((i.includes("pods")) || (i.includes("pod")))) {
+        var img_name = prompt("Enter Image name: ");
+        var pod_name = prompt("Enter Pod name: ");
+        cmd_no = "2";
+        command = cmd_no + " " + img_name + " " + pod_name;
+      }
+      else if (((i.includes("delete")) || (i.includes("remove"))) && ((i.includes("pods")) || (i.includes("pod")))) {
+        var pod_name = prompt("Enter pod name: ");
+        cmd_no = "3";
+        command = cmd_no + " " + pod_name;
+      }
+      else if (((i.includes("delete")) || (i.includes("remove"))) && ((i.includes("deployments")) || (i.includes("deployment")))) {
+        var deployment_name = prompt("Enter Deployment name: ");
+        cmd_no = "4";
+        command = cmd_no + " " + deployment_name;
+      }
+      else if ((i.includes("expose")) && ((i.includes("deployments")) || (i.includes("deployment")))) {
+        var deployment_name = prompt("Enter Deployment name: ");
+        var port_no = prompt("Enter port no of your deployment: ");
+        var type = prompt("Enter the type which you want to expose (NodePort/ClusterIP/External): ");
+        cmd_no = "5";
+        command = cmd_no + " " + deployment_name + " " + port_no + " " + type;
+      }
+      else if (((i.includes("scale")) || (i.includes("increase")) || (i.includes("decrease")) || (i.includes("scale up")) || (i.includes("scale down"))) && ((i.includes("deployments")) || (i.includes("deployment")))) {
+        var deployment_name = prompt("Enter Deployment name: ");
+        var replica = prompt("Enter no. of replicas: ");
+        cmd_no = "6";
+        command = cmd_no + " " + deployment_name + " " + replica;
+      }
+      else if (((i.includes("show")) || (i.includes("get"))) && ((i.includes("pods")) || (i.includes("pod")))) {
+        cmd_no = "7";
+        command = cmd_no;
+      }
+      else if (((i.includes("show")) || (i.includes("get"))) && ((i.includes("service")) || (i.includes("services")) || (i.includes("svc")))) {
+        cmd_no = "8";
+        command = cmd_no;
+      }
+      else if (((i.includes("delete")) || (i.includes("remove")) || (i.includes("destroy"))) && ((i.includes("all")) || (i.includes("everything")))) {
+        cmd_no = "9";
+        command = cmd_no;
+      }
+
+      var xhr = new XMLHttpRequest();
+      xhr.open("GET", "http://13.202.5.84/cgi-bin/kubernetes.py?x=" + command, true);
+      xhr.send();
+      xhr.onload = function() {
+        var output = xhr.responseText;
+        document.getElementById("d1").innerHTML = output;
+      }
+    }
+  </script>
+</body>
+</html>
