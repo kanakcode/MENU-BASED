@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Movie Recommender System</title>
+</head>
+<body>
+    <h1>Movie Recommender System</h1>
+    <form method="post" action="/cgi-bin/movie_recommendation.py">
+        <label for="movie">Select a movie:</label>
+        <select name="movie" id="movie">
+            <!-- Movie options will be populated by the CGI script -->
+        </select>
+        <input type="submit" value="Show Recommendation">
+    </form>
+</body>
+</html>
