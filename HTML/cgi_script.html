@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Kubernetes Management Tool</title>
+</head>
+<body>
+    <h1>Kubernetes Management Tool</h1>
+    <form action="/cgi-bin/cgi_script.py" method="post">
+        <label for="image_name">Docker Image Name:</label>
+        <input type="text" id="image_name" name="image_name"><br><br>
+        <label for="dockerfile_dir">Dockerfile Directory:</label>
+        <input type="text" id="dockerfile_dir" name="dockerfile_dir"><br><br>
+        <label for="deployment_name">Kubernetes Deployment Name:</label>
+        <input type="text" id="deployment_name" name="deployment_name"><br><br>
+        <input type="submit" value="Deploy">
+    </form>
+</body>
+</html>
